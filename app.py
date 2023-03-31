@@ -19,7 +19,7 @@ def home():
         amount = request.form.get('amount')
         converting_from = request.form.get('converter-from')
         converting_to = request.form.get('converter-to')
-                
+        c=CurrencyCodes()   
         print(amount)
         print(converting_from)
         print(converting_to)
@@ -41,14 +41,14 @@ def home():
         url = f"https://api.exchangerate.host/convert?from={converting_from}&to={converting_to}&amount={amount}"
         response = requests.get(url)
         data = response.json()
-        
+        symbol = c.get_symbol(converting_to)
         exchange_rate = data['result']
         print(exchange_rate)
 
         
 
         # Display the result to the user
-        result = f"{exchange_rate}"
+        result = f"{symbol}{exchange_rate}"
         session[result] = result
         print(result)
         return render_template('result.html', result=result)
