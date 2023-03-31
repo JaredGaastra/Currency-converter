@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Currency converter {% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    <h1>Currency Converter</h1>
+    {% for category,msg in get_flashed_messages(with_categories=true)%}
+        <p>{{msg}}</p>
+    {% endfor %}
+    {% if error_msg %}
+      <p>{{ error_msg }}</p>
+    {% endif %}
+
+    
+    <form action="/" name="converter" id="converter" method="post">
+        <label for="converter-from">Converting from:</label>
+        <input type="text" name="converter-from" class="converter-from"><br>
+        <label for="converter-to">Converting to:</label>
+        <input type="text" name="converter-to" class="converter-to"><br>
+        <label for="amount">Amount:</label>
+        <input type="text" name="amount" class="amount"><br>
+        <button>Convert</button>
+    </form>
+
+
+   
+    {% endblock %}
+    
+</body>
+</html>
